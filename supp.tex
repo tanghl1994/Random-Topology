@@ -1,0 +1,812 @@
+\appendix
+
+\begin{center}
+{\Huge \bf
+Supplemental Materials
+}
+\end{center}
+
+\section {Notations}
+In order to unify notations, we define the following notations about gradient:
+\begin{align*}
+\bm{g}^{(i)}(\bm{x}^{(i)}_t;\bm{\xi}^{(i)}_t) = \nabla F_i(\bm{x}^{(i)}_t;\bm{\xi}^{(i)}_t)
+\end{align*}
+\subsection{Matrix Notations}
+We aggregate vectors into matrix, and using matrix to simplify the proof.
+\begin{align*}
+	X_t &:= \left(\bm{x}_t^{(1)}, \bm{x}_t^{(2)}, \cdots, \bm{x}_t^{(n)}\right)\\
+	V_t &:= \left(\bm{v}_t^{(1)}, \bm{v}_t^{(2)}, \cdots, \bm{v}_t^{(n)}\right)\\
+	\Xi_t &:= \big(\bm{\xi}_t^{(1)}, \bm{\xi}_t^{(2)}, \cdots, \bm{\xi}_t^{(n)}\big)\\
+	G(X_t;\Xi_t)&:= \left(\bm{g}^{(1)}(\bm{x}_t^{(1)};\bm{\xi}_t^{(1)}),\cdots,\bm{g}^{(n)}(\bm{x}_t^{(n)};\bm{\xi}_t^{(n)}) \right)
+\end{align*}
+
+\subsection{Averaged Notations}
+We define averaged vectors as follows:
+\begin{align*}
+	\overline{\bm{x}}_t &:= X_t\frac{\mathbf{1}}{n} \numberthis\label{re: 1}\\
+	\overline{\bm{v}}_t &:= V_t\frac{\mathbf{1}}{n} \numberthis\label{re: 7}\\
+	\overline{\bm{g}}(X_t;\Xi_t) &:= G(X_t;\Xi_t)\frac{\mathbf{1}}{n} \numberthis\label{re: 8}\\
+	\overline{\nabla}f(X_t)&:= \frac{1}{n}\sum\limits_{i=1}^n f_i(\bm{x}_t^{(i)})\\
+	\Delta \overline{\bm{x}}_t &:= \overline{\bm{x}}_{t+1} - \overline{\bm{x}}_t
+\end{align*}
+
+\subsection{Block Notations}
+Remember in (\ref{eq: dividev}) and (\ref{eq: dividex}), we have divided models in blocks:
+\begin{align*}
+\bm{v}_t^{(i)} = &\left(\left(\bm{v}_t^{(i,1)}\right)^{\top}, \left(\bm{v}_t^{(i,2)}\right)^{\top}, \cdots, \left(\bm{v}_t^{(i,n)}\right)^{\top}\right)^{\top}\\
+\bm{x}_{t}^{(i)} = &\left(\left(\bm{x}_{t}^{(i,1)}\right)^{\top}, \left(\bm{x}_{t}^{(i,2)}\right)^{\top},\cdots, \left(\bm{x}_{t}^{(i,n)}\right)^{\top}\right)^{\top}, \forall i\in[n].
+\end{align*}
+ We do the some division on some other quantities, see following (the dimension of each block is the same as the corresponding block in $\bm{v}_t^{(i)}$) : 
+\begin{align*}
+	\overline{\bm{x}}_t &= \left(\left(\overline{\bm{x}}_t^{(1)}\right)^{\top},\left(\overline{\bm{x}}_t^{(2)}\right)^{\top},\cdots, \left(\overline{\bm{x}}_t^{(n)}\right)^{\top}\right)^{\top}\\
+	\overline{\bm{v}}_t &= \left(\left(\overline{\bm{v}}_t^{(1)}\right)^{\top},\left(\overline{\bm{v}}_t^{(2)}\right)^{\top},\cdots, \left(\overline{\bm{v}}_t^{(n)}\right)^{\top}\right)^{\top}\\
+	\Delta \overline{\bm{x}}_t &= \left(\left(\Delta^{(1)} \overline{\bm{x}}_t\right)^{\top}, \left(\Delta_t^{(2)} \overline{\bm{x}}\right)^{\top}, \cdots, \left(\Delta_t^{(n)} \overline{\bm{x}}\right)^{\top}\right)^{\top}\\
+	\bm{g}^{(i)}(\cdot; \cdot) &= \left(\left(\bm{g}^{(i,1)}(\cdot; \cdot)\right)^{\top}, \left(\bm{g}^{(i,2)}(\cdot; \cdot)\right)^{\top}, \cdots, \left(\bm{g}^{(i,n)}(\cdot; \cdot)\right)^{\top}\right)^{\top}\\
+	\overline{\bm{g}}(X_t;\Xi_t) &= \left(\left(\overline{\bm{g}}^{(1)}(X_t;\Xi_t)\right)^{\top},\cdots, \left(\overline{\bm{g}}^{(n)}(X_t;\Xi_t)\right)^{\top}\right)^{\top}\\
+	\nabla f_i(\bm{x}_t^{(i)}) &= \left(\left(\nabla^{(1)} f_i(\bm{x}_t^{(i)})\right)^{\top}, \left(\nabla^{(2)} f_i(\bm{x}_t^{(i)})\right)^{\top}, \cdots, \left(\nabla^{(n)} f_i(\bm{x}_t^{(i)})\right)^{\top}\right)^{\top}\\
+	\overline{\nabla} f(X_t) &= \left(\left(\overline{\nabla}^{(1)} f(X_t)\right)^{\top}, \left(\overline{\nabla}^{(2)} f(X_t)\right)^{\top}, \cdots, \left(\overline{\nabla}^{(n)} f(X_t)\right)^{\top}\right)^{\top}\\
+	\nabla f(\overline{\bm{x}}_t)&= \left(\left(\nabla^{(1)} f(\overline{\bm{x}}_t)\right)^{\top}, \left(\nabla^{(2)} f(\overline{\bm{x}}_t)\right)^{\top}, \cdots, \left(\nabla^{(n)} f(\overline{\bm{x}}_t)\right)^{\top}\right)^{\top}.
+\end{align*}
+
+\subsection{Aggregated Block Notations}
+Now, we can define some additional notations throughout the following proof
+\begin{align*}
+X_t^{(j)}:=&(\bm{x}_t^{(1,j)},\bm{x}_t^{(2,j)},\cdots,\bm{x}_t^{(n,j)})\\
+V_t^{(j)}:=&(\bm{v}_t^{(1,j)},\bm{v}_t^{(2,j)},\cdots,\bm{v}_t^{(n,j)})\\
+G^{(j)}(X_t;\Xi_t):= &\left(\bm{g}^{(1,j)}(\bm{x}_t^{(1)};\bm{\xi}_t^{(1)}),\cdots,\bm{g}^{(n,j)}(\bm{x}_t^{(n)};\bm{\xi}_t^{(n)}) \right)
+\end{align*}
+
+\subsection{Relations between Notations}
+We have the following relations between these notations:
+\begin{align*}
+	\overline{\bm{x}}_t^{(j)} &= X_t^{(j)}\frac{\mathbf{1}}{n} \numberthis\label{re: 2}\\
+	\overline{\bm{v}}_t^{(j)} &= V_t^{(j)}\frac{\mathbf{1}}{n} \numberthis\label{re: 3}\\
+	\overline{\bm{g}}^{(j)}(X_t;\Xi_t) &= G^{(j)}(X_t;\Xi_t)\frac{\mathbf{1}}{n} \numberthis\label{re: 9}\\
+	A_nA_n &= A_n \numberthis\label{re: 4}\\ 
+	V_t &= X_t - \gamma G(X_t; \Xi_t) \numberthis\label{re: 5}\\
+	V_t^{(j)} &= X_t^{(j)} - \gamma G^{(j)}(X_t; \Xi_t) \numberthis\label{re: 6}
+\end{align*}
+
+\subsection{Expectation Notations}
+There are different conditions when taking expectations in the proof, so we list these conditions below:
+\paragraph{$\mathbb{E}_{t,G}[\cdot]$}
+Denote taking the expectation over the \textbf{computing stochastic Gradient} procedure at $t$th iteration on condition of the history information before the $t$th iteration.
+\paragraph{$\mathbb{E}_{t,P}[\cdot]$}
+Denote taking the expectation over the \textbf{Package drop in sending and receiving blocks} procedure at $t$th iteration on condition of the history information before the $t$th iteration and the SGD procedure at the $t$th iteration.
+\paragraph{$\mathbb{E}_t[\cdot]$}
+Denote taking the expectation over all procedure during the $t$th iteration on condition of the history information before the $t$th iteration.
+\paragraph{$\mathbb{E}[\cdot]$}
+Denote taking the expectation over all history information.
+
+\subsection{Others}
+We define $I_n$ as the $n\times n$ identity matrix, $\mathbf{1}_n$ as $(1,1,\cdots, 1)^\top$ and $A_n$ as $\frac{1}{n}\mathbf{1}\mathbf{1}^{\top}$. Also, we suppose the packet drop rate is $p$.
+
+The following equation is used frequently:
+\begin{equation} \label{eq: T}
+	\Tr (XA_nX^{\top}) = \Tr\Big(X\frac{\mathbf{1}\mathbf{1}^{\top}}{n}X^{\top}\Big) = n\Tr \bigg(\Big( X\frac{\mathbf{1}}{n}\Big)^{\top}X\frac{\mathbf{1}}{n}\bigg) = n\Big( X\frac{\mathbf{1}}{n}\Big)^{\top}X\frac{\mathbf{1}}{n} = n\left\|X\frac{\mathbf{1}}{n}\right\|^2
+\end{equation}
+
+
+
+
+
+
+
+
+
+\section{Proof to Theorem~\ref{theo:1}}
+The critical part for a decentralized algorithm to be successful, is that local model on each node will converge to their average model. We summarize this critical property by the next lemma.
+
+\begin{lemma}\label{L:xavekey}
+From the updating rule (\ref{eq: updatingrule}) and Assumption \ref{ass:global}, we have
+\begin{align*}
+\sum_{s=1}^T\sum_{i=1}^n\mathbb E\left\|\bm{x}_{s+1}^{(i)} - \overline{\bm{x}}_{s+1}\right\|^2 \leq & \frac{2\gamma^2n\sigma^2TC_1}{(1-\sqrt{\beta})^2} + \frac{6n\zeta^2TC_1}{(1-\sqrt{\beta})^2},\numberthis\label{lemma:xavekey}
+\end{align*}
+where $C_1:=\left(1- \frac{6L^2\gamma^2}{(1-\sqrt{\beta})^2} \right)^{-1}$ and $\beta = \alpha_2 - \alpha_3 $.
+\end{lemma}
+
+We will prove this critical property first. Then, after proving some lemmas, we will prove the final theorem. During the proof, we will use properties of weighted matrix $W_t^{(j)}$ which is showed in \textbf{Section ~\ref{secD}}.
+
+\subsection{Proof of Lemma~\ref{L:xavekey}} 
+\begin{proof} [\textbf{Proof to Lemma~\ref{L:xavekey}}]
+According to updating rule (\ref{eq: updatingrule}) and Assumption \ref{ass:global}, we have
+\begin{align*}
+X_{t+1}^{(j)} = & V_t^{(j)}W_{t}^{(j)}\\
+= & \left(X_t^{(j)} - \gamma G^{(j)}(X_t;\Xi_t)\right)W_{t}^{(j)}\\
+= & X_1^{(j)}\prod_{r=1}^t W_{r}^{(j)} - \gamma\sum_{s=1}^tG^{(j)}(X_s;\Xi_s)\prod_{r=s}^tW_{r}^{(j)}\\
+= & - \gamma\sum_{s=1}^tG^{(j)}(X_s;\Xi_s)\prod_{r=s}^tW_{r}^{(j)}. \text{   } \left(\text{due to } X_1 = 0\right)\numberthis\label{lemma:xavekey_1} 
+\end{align*}
+
+We also have 
+\begin{align*}
+\sum_{i=1}^n\left\|\bm{x}_{t+1}^{(i,j)} - \overline{\bm{x}}_{t+1}^{(j)}\right\|^2 = &\left\|X_{t+1}^{(j)} - X_{t+1}^{(j)}\frac{\bm{1}}{n}\bm{1}^{\top}_n \right\|^2_F =  \left\|X_{t+1}^{(j)} - X_{t+1}^{(j)}A_n \right\|^2_F \numberthis\label{lemma:xavekey_2}
+\end{align*}
+Combing \eqref{lemma:xavekey_1} and \eqref{lemma:xavekey_2} together, and define
+\begin{align*}
+H_{t,s}^{(j)} : = G^{(j)}(X_s;\Xi_s)\prod_{r=s}^tW_{r}^{(j)}
+\end{align*}
+we get
+\begin{align*}
+\sum_{i=1}^n\left\|\left(\bm{x}_{t+1}^{(i,j)} - \overline{\bm{x}}_{t+1}^{(j)}\right)\right\|^2 = & \left\|X_{t+1}^{(j)}(I_n - A_n) \right\|^2_F\\
+= & \gamma^2\left\|\sum_{s=1}^tH_{t,s}^{(j)}(I_n-A_n) \right\|^2_F\\
+= & \gamma^2 \Tr\left((I_n-A_n)\sum_{s=1}^t\left(H_{t,s}^{(j)}\right)^{\top}\sum_{s'=1}^tH_{t,s'}^{(j)}(I-An) \right)\\
+= & \gamma^2 \sum_{s,s'=1}^t\Tr\left((I_n-A_n)\left(H_{t,s}^{(j)}\right)^{\top}H_{t,s'}^{(j)}(I-An) \right)\\
+\leq & \frac{\gamma^2}{2} \sum_{s,s'=1}^t\left( k_{s,s'}\left\|H_{t,s}^{(j)}(I_n-A_n)\right\|^2_F + \frac{1}{k_{s,s'}}\left\|H_{t,s'}^{(j)}(I_n-A_n)\right\|^2_F \right) ,\numberthis\label{lemma:xavekey_3}
+\end{align*}
+where $k_{s,s'}$ is a scale factor that is to be computed later. The last inequality is because $2\Tr(A^{\top}B)\leq k\|A\|_F^2 + \frac{1}{k}\|B\|_F^2$ for any matrix $A$ and $B$.
+
+For $\left\|H_{t,s}^{(j)}(I_n-A_n)\right\|^2_F$, we have
+\begin{align*}
+&\mathbb E \left\|H_{t,s}^{(j)}(I_n-A_n)\right\|^2_F\\
+ = & \mathbb E\Tr\left( G^{(j)}(X_s;\Xi_s)W_{s}^{(j)}\cdots W_{t}^{(j)} (I_n-A_n) \left(W_{t}^{(j)}\right)^{\top}\cdots  \left(W_{s}^{(j)}\right)^{\top} \left(G^{(j)}(X_s;\Xi_s)\right)^{\top}  \right). \numberthis\label{lemma: keyyc_1}
+\end{align*}
+
+Now we can take expectation from time $t-1$ back to time $s-1$. When taking expectation of time $t$, we only need to compute $\mathbb{E} \left[W_t^{(j)}(I_n-A_n)\left(W_t^{(j)}\right)^{\top}\right]$. From Lemma \ref{lem: EWW} and Lemma \ref{lem: EWAW}, this is just $(\alpha_2 - \alpha_3)(I_n-A_n)$. Applying this to (\ref{lemma: keyyc_1}), we can get the similar form except replacing $t$ by $t-1$ and multiplying by factor $\alpha_2-\alpha_3$. Therefore, we have the following:
+\begin{align*}
+\mathbb E \left\|H_{t,s}^{(j)}(I_n-A_n)\right\|^2_F = & (\alpha_2- \alpha_3)^{t-s+1}\mathbb{E} \left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F\\
+ \leq & (\alpha_2-\alpha_3)^{t-s}\mathbb{E} \left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F.
+\end{align*}
+The last inequality comes from $\alpha_3\le \alpha_2$c and $\beta = \alpha_2-\alpha_3 $ is defined in Theorem~\ref{theo:1} .
+
+Then \eqref{lemma:xavekey_3} becomes
+\begin{align*}
+&\sum_{i=1}^n\left\|\left(\bm{x}_{t+1}^{(i,j)} - \overline{\bm{x}}_{t+1}^{(j)}\right)\right\|^2\\
+ \leq  & \frac{\gamma^2}{2} \sum_{s,s'=1}^t\left( k_{s,s'}\beta^{t-s}\left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F + \frac{1}{k_{s,s'}}\beta^{t-s'}\left\|G^{(j)}(X_{s'};\xi_{s'})(I_n-A_n)\right\|^2_F \right).
+\end{align*}
+So if we choose $k_{s,s'} = \beta^{\frac{s-s'}{2}}$, the above inequality becomes
+\begin{align*}
+&\sum_{i=1}^n\left\|\left(\bm{x}_{t+1}^{(i,j)} - \overline{\bm{x}}_{t+1}^{(j)}\right)\right\|^2\\
+ \leq  & \frac{\gamma^2}{2} \sum_{s,s'=1}^t\left( \beta^{\frac{2t-s-s'}{2}}\left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F + \beta^{\frac{2t-s'-s}{2}}\left\|G^{(j)}(X_{s'};\xi_{s'})(I_n-A_n)\right\|^2_F \right)\\
+ = & \frac{\gamma^2\beta^{t}}{2} \sum_{s,s'=1}^t\beta^{\frac{-s-s'}{2}}\left( \left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F + \left\|G^{(j)}(X_{s'};\xi_{s'})(I_n-A_n)\right\|^2_F \right)\\
+ = & \gamma^2\beta^{t} \sum_{s,s'=1}^t\beta^{\frac{-s-s'}{2}} \left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F \\
+ = & \gamma^2 \sum_{s=1}^t\beta^{\frac{t-s}{2}} \left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F \sum_{s'=1}^t \beta^{\frac{t-s'}{2}}\\
+ \leq & \frac{\gamma^2}{1-\sqrt{\beta}} \sum_{s=1}^t\beta^{\frac{t-s}{2}} \left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|^2_F \numberthis\label{lemma:xavekey_4}
+\end{align*}
+
+
+We also have: 
+\begin{align*}
+&\sum_{j=1}^n\mathbb E\left\|G^{(j)}(X_s;\Xi_s)(I_n-A_n)\right\|_F^2\\
+=& \sum_{j=1}^n\sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2\\
+\leq & \sum_{j=1}^n\sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2 \\
+& + 3\sum_{j=1}^n\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2 + 6L\sum_{j=1}^n\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2 \text{    } (\text{using } \eqref{lemma:key_4})\\
+= & \sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla f^{(i)}(\bm{x}_t^{(i)})\right\|^2 \\
+& + 3\sum_{i=1}^n\left\| \nabla f^{(i)}(\overline{\bm{x}}_t) - \nabla f(\overline{\bm{x}}_t) \right\|^2 + 6L\sum_{i=1}^n\left\|\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right\|^2\\
+\leq & n\sigma^2 + 6L\sum_{i=1}^n\left\|\overline{\bm{x}}_s - \bm{x}_s^{(i)}\right\|^2 + 3n\zeta^2 
+\end{align*}
+
+From the inequality above and \eqref{lemma:xavekey_4} we have
+\begin{align*}
+&\sum_{j=1}^n\sum_{s=1}^T\sum_{i=1}^n\mathbb E\left\|\bm{x}_{s+1}^{(i,j)} - \overline{\bm{x}}_{s+1}^{(j)}\right\|^2 \\
+\leq & \left(\frac{\gamma^2n\sigma^2}{1-\sqrt{\beta}} + \sum_{j=1}^n\frac{3n\zeta^2}{1-\sqrt{\beta}}\right)\sum_{s=1}^T\sum_{r=1}^s\beta^{\frac{s-r}{2}} + \frac{6L^2\gamma^2}{1-\sqrt{\beta}}\sum_{s=1}^T\sum_{r=1}^s\sum_{i=1}^n\beta^{\frac{s-r}{2}}\left\|\overline{\bm{x}}_r- \bm{x}_r^{(i)}\right\|^2\\
+\leq & \frac{\gamma^2n\sigma^2T}{(1-\sqrt{\beta})^2} + \frac{n\zeta^2T}{(1-\sqrt{\beta})^2} + \frac{6L^2\gamma^2}{1-\sqrt{\beta}}\sum_{i=1}^n\sum_{s=1}^T\sum_{r=1}^s\beta^{\frac{s-r}{2}}\left\|\overline{\bm{x}}_r- \bm{x}_r^{(i)}\right\|^2\\
+= & \frac{\gamma^2n\sigma^2T}{(1-\sqrt{\beta})^2} + \frac{3n\zeta^2T}{(1-\sqrt{\beta})^2} + \frac{6L^2\gamma^2}{1-\sqrt{\beta}}\sum_{i=1}^n\sum_{r=1}^T\sum_{s=r}^T\beta^{\frac{s-r}{2}}\left\|\overline{\bm{x}}_r- \bm{x}_r^{(i)}\right\|^2\\
+= & \frac{\gamma^2n\sigma^2T}{(1-\sqrt{\beta})^2} + \frac{3n\zeta^2T}{(1-\sqrt{\beta})^2} + \frac{6L^2\gamma^2}{1-\sqrt{\beta}}\sum_{i=1}^n\sum_{r=1}^T\sum_{s=0}^{T-r}\beta^{\frac{s}{2}}\left\|\overline{\bm{x}}_r- \bm{x}_r^{(i)}\right\|^2\\
+\leq  & \frac{\gamma^2n\sigma^2T}{(1-\sqrt{\beta})^2} + \frac{3n\zeta^2T}{(1-\sqrt{\beta})^2} + \frac{6L^2\gamma^2}{(1-\sqrt{\beta})^2}\sum_{i=1}^n\sum_{r=1}^T\left\|\overline{\bm{x}}_r- \bm{x}_r^{(i)}\right\|^2.
+\end{align*}
+If $\gamma$ is small enough that satisfies $\left(1- \frac{6L^2\gamma^2}{(1-\sqrt{\beta})^2} \right) > 0$, then we have
+\begin{align*}
+\left(1- \frac{6L^2\gamma^2}{(1-\sqrt{\beta})^2} \right) \sum_{s=1}^T\sum_{i=1}^n\mathbb E\left\|\bm{x}_{s}^{(i)} - \overline{\bm{x}}_{s}\right\|^2 \leq & \frac{\gamma^2n\sigma^2T}{(1-\sqrt{\beta})^2} + \frac{3n\zeta^2T}{(1-\sqrt{\beta})^2}.
+\end{align*}
+Denote $C_1:=\left(1- \frac{6L^2\gamma^2}{(1-\sqrt{\beta})^2} \right)^{-1}$, then we have
+\begin{align*}
+\sum_{s=1}^T\sum_{i=1}^n\mathbb E\left\|\bm{x}_{s}^{(i)} - \overline{\bm{x}}_{s}\right\|^2 \leq & \frac{2\gamma^2n\sigma^2TC_1}{(1-\sqrt{\beta})^2} + \frac{6n\zeta^2TC_1}{(1-\sqrt{\beta})^2}.
+\end{align*}
+
+\end{proof}
+
+
+
+\subsection{Proof to Theorem~\ref{theo:1}}
+
+
+\begin{lemma}\label{L:deltax}
+From the updating rule (\ref{eq: updatingrule}) and Assumption \ref{ass:global}, we have
+\begin{align*}
+\mathbb{E}_{t,P}\big[\left\|\Delta\overline{\bm{x}}_t\right\|^2\big] = &\frac{\alpha_3}{n}\sum_{j=1}^n \Tr\left( \left(V_t^{(j)}\right)^{\top}\left(I_n-A_n\right)V_t^{(j)} \right) +  \gamma^2 \left\| \overline{\bm{g}}(X_t;\Xi_t) \right\|^2,\\
+\mathbb{E}_{t,P}[\Delta\overline{\bm{x}}_t]= &-\gamma \overline{\bm{g}}(X_t; \Xi_t).
+\end{align*}
+\begin{proof}
+We begin with $\mathbb{E}_{t,P}\big[\left\|\Delta\overline{\bm{x}}_t\right\|^2\big]$: 
+\begin{align*}
+\mathbb{E}_{t,P}\big[\left\|\Delta\overline{\bm{x}}_t\right\|^2\big] =&  \sum\limits_{j=1}^n \mathbb{E}_{t,P}\Big[\left\|\Delta^{(j)}\overline{\bm{x}}_t\right\|^2\Big]\\
+\xlongequal{(\ref{re: 2})}& \sum_{j=1}^n\mathbb{E}_{t,P}\bigg[\left\| \left(X_{t+1}^{(j)} - X_{t}^{(j)}\right)\frac{\bm{1}_n}{n}\right\|^2\bigg]\\
+=& \sum_{j=1}^n\mathbb{E}_{t,P} \bigg[\left\| \left(V_t^{(j)}W_t^{(j)} - X_{t}^{(j)}\right)\frac{\bm{1}_n}{n}\right\|^2\bigg]\\
+\xlongequal{(\ref{eq: T})}& \frac{1}{n}\sum_{j=1}^n\mathbb{E}_{t,P} \bigg[\Tr\left( \left(V_t^{(j)}W_t^{(j)} - X_{t}^{(j)}\right) A_n \left( \left(W_t^{(j)}\right)^{\top}\left(V_t^{(j)}\right)^{\top} - \left(X_{t}^{(j)}\right)^{\top}\right)   \right)\bigg]\\
+= & \frac{1}{n}\sum_{j=1}^n \Tr\left( V_t^{(j)}\mathbb{E}_{t,P}\left[ W_t^{(j)} A_n \left(W_t^{(j)}\right)^{\top}\right] \left(V_t^{(j)}\right)^{\top} \right)\\
+& - \frac{2}{n}\sum_{j=1}^n \Tr\left( X_{t}^{(j)} A_n\mathbb{E}_{t,P}\left[\left(W_t^{(j)}\right)^{\top}\right] \left(V_t^{(j)}\right)^{\top} \right) + \frac{1}{n}\sum_{j=1}^n \Tr\left( X_{t}^{(j)} A_n \left(X_{t}^{(j)}\right)^{\top}\right)\\
+= & \frac{\alpha_3}{n}\sum_{j=1}^n \Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right) + \frac{1}{n}\sum_{j=1}^n \Tr\left( V_t^{(j)} A_n \left(V_t^{(j)}\right)^{\top}  \right)\\ 
+& - \frac{2}{n}\sum_{j=1}^n \Tr\left( X_{t}^{(j)} A_n \left(V_t^{(j)}\right)^{\top} \right) + \frac{1}{n}\sum_{j=1}^n \Tr\left( X_{t}^{(j)} A_n \left(X_{t}^{(j)}\right)^{\top}\right),\numberthis\label{lemma:deltax_1}
+\end{align*}
+where for the last two equations, we use Lemma (\ref{lem: EWAW}), Lemma(\ref{lem: EW}), and (\ref{re: 4}).
+From (\ref{re: 5}), we can obtain the following equation: 
+\begin{align*}
+ V_t^{(j)}A_n \left(V_t^{(j)}\right)^{\top} = &X_t^{(j)} A_n \left(X_t^{(j)}\right)^{\top}  - \gamma G^{(j)}(X_t;\Xi_t)  A_n \left(X_t^{(j)}\right)^{\top} - \gamma X_t^{(j)}A_n\left(G^{(j)}(X_t;\Xi_t)\right)^{\top}\\
+& + \gamma^2 G^{(j)}(X_t;\Xi_t) A_n \left( G^{(j)}(X_t;\Xi_t) \right)^{\top}\\
+X_t^{(j)} A_n \left(V_t^{(j)}\right)^{\top} = &  X_t^{(j)} A_n \left(X_t^{(j)}\right)^{\top} - \gamma G^{(j)}(X_t;\Xi_t) A_n \left(X_t^{(j)}\right)^{\top} ,\numberthis\label{lemma:deltax_2}
+\end{align*}
+From the property of trace, we have:
+\begin{equation} \label{lemma: deltax_3}
+	\Tr \left(G^{(j)}(X_t;\Xi_t)  A_n \left(X_t^{(j)}\right)^{\top}\right) = \Tr \left(X_t^{(j)}A_n^{\top}\left(G^{(j)}(X_t;\Xi_t)\right)^{\top}\right) = \Tr \left(X_t^{(j)}A_n\left(G^{(j)}(X_t;\Xi_t)\right)^{\top}\right).
+\end{equation}
+Combing \eqref{lemma:deltax_1}, \eqref{lemma:deltax_2} and \eqref{lemma: deltax_3}, we have
+\begin{align*}
+\mathbb{E}_{t,P}\left\|\Delta\overline{\bm{x}}_t\right\|^2 = & \frac{\alpha_3}{n}\sum_{j=1}^n \Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right) +  \frac{\gamma^2}{n}\sum_{j=1}^n \Tr\left( G^{(j)}(X_t;\Xi_t) A_n \left( G^{(j)}(X_t;\Xi_t) \right)^{\top}\right)\\
+\xlongequal{(\ref{eq: T})} & \frac{\alpha_3}{n}\sum_{j=1}^n \Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right) +  \gamma^2\sum_{j=1}^n \left\| G^{(j)}(X_t;\Xi_t)\frac{\bm{1}_n}{n} \right\|^2\\
+\xlongequal{(\ref{re: 9})} & \frac{\alpha_3}{n}\sum_{j=1}^n \Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right) +  \gamma^2 \left\| \overline{\bm{g}}(X_t;\Xi_t) \right\|^2.
+\end{align*}
+For $\mathbb{E}_{t,P}[\Delta\overline{\bm{x}}_t]$, we first compute $\mathbb{E}_{t,P}[\Delta^{(j)}\overline{\bm{x}}_t], (j\in [n])$.
+\begin{align*}
+\mathbb{E}_{t,P}[\Delta^{(j)}\overline{\bm{x}}_t] &= \mathbb{E}_{t,P}[\overline{\bm{x}}_{t+1}^{(j)}] - \mathbb{E}_{t,P}[\overline{\bm{x}}_t^{(j)}]\\
+&=\mathbb{E}_{t,P}\left[X_t^{(j)}\right]\frac{\mathbf{1}}{n} - \overline{\bm{x}}_t^{(j)}\\
+&=V_t^{(j)}\mathbb{E}_{t,P}\left[W_t^{(j)}\right]\frac{\bm{1}}{n} - \overline{\bm{x}}_t^{(j)}\\
+&\xlongequal{\text{Lemma (\ref{lem: EW})}} V_t^{(j)}\left(\alpha_1I_n +(1-\alpha_1)A_n\right)\frac{\bm{1}}{n} - \overline{\bm{x}}_t^{(j)}\\
+&=  V_t^{(j)}\frac{\bm{1}}{n} - \overline{\bm{x}}_t^{(j)}\\
+&= \overline{\bm{v}}_t^{(j)} - \overline{\bm{x}}_t^{(j)}\\
+&=  -\gamma \overline{\bm{g}}^{(j)}(X_t;\Xi_t),
+\end{align*}
+which immediately leads to $\mathbb{E}_{t,P}\left[\Delta\overline{\bm{x}}_t\right] = -\gamma \overline{\bm{g}}(X_t; \Xi_t)$.
+\end{proof}
+
+\end{lemma}
+
+
+\begin{lemma}\label{L:key}
+From the updating rule (\ref{eq: updatingrule}) and Assumption \ref{ass:global}, we have
+\begin{align*}
+\sum_{j=1}^n\mathbb{E}_{t,G}\left[\Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right)\right]
+\leq & (2+12\gamma^2L)\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 + 6n\gamma^2\zeta^2 + 2n\gamma^2\sigma^2.\end{align*}
+
+\begin{proof}
+\begin{align*}
+\Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right) = & \Tr\left( V_t^{(j)}\left(V_t^{(j)}\right)^{\top}\right) - \Tr\left( V_t^{(j)}A_n\left(V_t^{(j)}\right)^{\top} \right)\\
+\xlongequal{(\ref{eq: T}} & \left\|V_t^{(j)}\right\|^2_F - n\left\|V_t^{(j)}\frac{\bm{1}_n}{n}\right\|^2\\
+= & \sum_{i=1}^n\left(\left\|\bm{v}_t^{(i,j)}\right\|^2 - \left\|\overline{\bm{v}}_t^{(j)}\right\|^2\right)\\
+= & \sum_{i=1}^n\left\|\bm{v}_t^{(i,j)} - \overline{\bm{v}}_t^{(j)}\right\|^2,\numberthis\label{lemma:key_1}
+\end{align*}
+the last equation above is because
+\begin{align} \label{eq: a}
+\sum_{i=1}^n \|\bm{a}_i\|^2 - \left\|\sum_{i=1}^n\frac{\bm{a}_i}{n}\right\|^2 = \sum_{i=1}^n\left\|\bm{a}_i-\sum_{k=1}^n\frac{\bm{a}_i}{n}\right\|^2.
+\end{align}
+
+Since
+\begin{align*}
+\overline{\bm{v}}_t^{(j)} = & \overline{\bm{x}}_t^{(j)} - \gamma \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\\
+\bm{v}_t^{(i,j)} - \overline{\bm{v}}_t^{(j)} = & \left(\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right) - \gamma\left(\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right),
+\end{align*}
+we have the following: 
+\begin{align*}
+\sum_{i=1}^n\left\|\bm{v}_t^{(i,j)} - \overline{\bm{v}}_t^{(j)}\right\|^2 = & \sum_{i=1}^n\left\|\left(\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right) - \gamma\left(\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right)\right\|^2\\
+\leq & 2\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right)\right\|^2 + 2\gamma^2\sum_{i=1}^n\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2,\numberthis\label{lemma:key_2}
+\end{align*}
+where the last inequality comes from $\left\|\bm{a}+\bm{b}\right\|^2\le 2\left\|\bm{a}\right\|^2 + 2\left\|\bm{b}\right\|^2$.
+
+For $\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2$, we have
+\begin{align*}
+&\sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2\\
+\xlongequal{(\ref{eq: a})} & \sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) \right\|^2 - n\mathbb E_{t,G}\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2\\
+ = & \sum_{i=1}^n\mathbb E_{t,G}\left\|\left(\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right) + \nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2\\
+ & - n\mathbb E_{t,G}\left\|\left(\overline{\bm{g}}^{(j)}(X_t;\Xi_t) - \overline{\nabla}^{(j)}f(X_t)\right) + \overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+=& \sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2 + \sum_{i=1}^n\left\|\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2 
+  - n\mathbb E_{t,G}\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t) - \overline{\nabla}^{(j)}f(X_t)\right\|^2\\
+  & - n\left\| \overline{\nabla}^{(j)}f(X_t) \right\|^2
+  + 2\sum_{i=1}^n\mathbb E_{t,G}\left[\left\langle\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)}),\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\rangle\right]\\
+ & - 2n\mathbb E_{t,G}\left[\left\langle\overline{\bm{g}}^{(j)}(X_t;\Xi_t) - \overline{\nabla}^{(j)}f(X_t),\overline{\nabla}^{(j)}f(X_t)\right\rangle\right]\\
+ = & \sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2 + \sum_{i=1}^n\left\|\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2 
+  - n\mathbb E_{t,G}\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t) - \overline{\nabla}^{(j)}f(X_t)\right\|^2\\
+& - n\left\| \overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+\leq & \sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2 + \sum_{i=1}^n\left\|\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2  - n\left\| \overline{\nabla}^{(j)}f(X_t) \right\|^2.\numberthis\label{lemma:key_3}
+\end{align*}
+For $\sum_{i=1}^n\left\|\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2  - n\left\| \overline{\nabla}^{(j)}f(X_t) \right\|^2$, we have
+\begin{align*}
+&\sum_{i=1}^n\left\|\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2  - n\left\| \overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+\xlongequal{(\ref{eq: a})} & \sum_{i=1}^n\left\|\nabla^{(j)} f_i(\bm{x}_t^{(i)}) - \overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+= &  \sum_{i=1}^n\left\|\left(\nabla^{(j)} f_i(\bm{x}_t^{(i)}) - \nabla^{(j)} f_i(\overline{\bm{x}}_t)\right) - \left(\overline{\nabla}^{(j)}f(X_t) - \nabla^{(j)} f(\overline{\bm{x}}_t)\right) + \left(\nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t)\right) \right\|^2\\
+\leq &  3\sum_{i=1}^n\left\|\nabla^{(j)} f_i(\bm{x}_t^{(i)}) - \nabla^{(j)} f_i(\overline{\bm{x}}_t)\right\|^2 + 3\sum_{i=1}^n\left\| \overline{\nabla}^{(j)}f(X_t) - \nabla^{(j)} f(\overline{\bm{x}}_t)\right\|^2 \\
+& + 3\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2 \text{        }\left(\text{due to } \left\|\bm{a} + \bm{b} + \bm{c}\right\|^2\le 3\left\|\bm{a}\right\|^2 + 3\left\|\bm{}\right\|^2 + 3\left\|\bm{c}\right\|^2\right)\\
+\leq &  3L^2\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2  + 3n\left\| \overline{\nabla}^{(j)}f(X_t) - \nabla^{(j)} f(\overline{\bm{x}}_t)\right\|^2+ 3\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2\\
+= &  3L^2\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2  + \frac{3}{n}\left\|\sum_{k=1}^n \left( \nabla^{(j)} f_k(\bm{x}_t^{(k)}) - \nabla^{(j)} f_i(\overline{\bm{x}}_t) \right)\right\|^2+ 3\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2\\
+\leq &  3L^2\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2  + 3\sum_{k=1}^n \left\| \nabla^{(j)} f_k(\bm{x}_t^{(k)}) - \nabla^{(j)} f_k(\overline{\bm{x}}_t)\right\|^2+ 3\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2\\
+\leq &  3L^2\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2  + 3L^2\sum_{k=1}^n\left\|\bm{x}_t^{(k,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2+ 3\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2\\
+\leq &  6L^2\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2 + 3\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2.
+\end{align*}
+Taking the above inequality into \eqref{lemma:key_3}, we get
+\begin{align*}
+&\sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2\\ 
+\leq & \sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2  + 3\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2\\
+&+ 6L^2\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2.\numberthis\label{lemma:key_4}
+\end{align*}
+
+Combinig \eqref{lemma:key_2} and \eqref{lemma:key_4} together we have
+\begin{align*}
+\mathbb E_{t,G}\sum_{i=1}^n\left\|\bm{v}_t^{(i,j)} - \overline{\bm{v}}_t^{(j)}\right\|^2 \leq & (2+12L^2\gamma^2)\sum_{i=1}^n\left\|\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right\|^2 + 6\gamma^2\sum_{i=1}^n\left\| \nabla^{(j)} f_i(\overline{\bm{x}}_t) - \nabla^{(j)} f(\overline{\bm{x}}_t) \right\|^2\\
+& + 2\gamma^2\sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) -\nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2
+\end{align*}
+Summing $j$ from $1$ to $n$, we obtain the following: 
+\begin{align*}
+\mathbb E_{t,G}\sum_{i=1}^n\left\|\bm{v}_t^{(i)} - \overline{\bm{v}}_t\right\|^2 \leq & (2+12L^2\gamma^2)\sum_{i=1}^n\left\|\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right\|^2 + 6\gamma^2\sum_{i=1}^n\left\| \nabla f_{i}(\overline{\bm{x}}_t) - \nabla f(\overline{\bm{x}}_t) \right\|^2\\
+& + 2\gamma^2\sum_{i=1}^n\mathbb E_{t,G}\left\|\bm{g}^{(i)}(\bm{x}^{(i)}_t;\bm{\xi}^{(i)}_t) -\nabla f_i(\bm{x}_t^{(i)})\right\|^2\\
+\leq & (2+12L^2\gamma^2)\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 + 6n\gamma^2\zeta^2
+ + 2n\gamma^2\sigma^2.\numberthis\label{lemma:key_5}
+\end{align*}
+From \eqref{lemma:key_1} and \eqref{lemma:key_5}, we have
+\begin{align*}
+\sum_{j=1}^n\mathbb{E}_{t,G}\Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right)
+\leq & (2+12\gamma^2L)\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 + 6n\gamma^2\zeta^2 + 2n\gamma^2\sigma^2.
+\end{align*}
+
+
+
+\end{proof}
+\end{lemma}
+
+
+
+
+
+
+\begin{proof} [\textbf{Proof to Theorem~\ref{theo:1}}]
+From Lemma \ref{lem: EW} and Lemma \ref{lem: EWAW}, we have
+\begin{align*}
+\mathbb{E}_{t,P}(W_t^{(j)}) =& \alpha_1I_n + (1-\alpha_1)A_n\\
+\mathbb{E}_{t,P}\left(W_t^{(j)}A_n\left(W_t^{(j)}\right)^{\top}\right) =& \alpha_3 I_n + (1-\alpha_3)A_n
+\end{align*}
+
+
+From the updating rule (\ref{eq: updatingrule}) and L-Lipschitz of $f$, we have
+\begin{align*}
+\mathbb{E}_{t,P}f(\overline{X}_{t+1}) \leq & f(\overline{X}_{t}) + \mathbb{E}_{t,P}\langle \nabla f(\overline{X}_{t}), \Delta\overline{\bm{x}}_t \rangle + \mathbb{E}_{t,P}\frac{L}{2}\left\|\overline{\bm{x}}_t\right\|^2\\
+\xlongequal{\text{Lemma \ref{L:deltax}}}& f(\overline{X}_{t}) - \gamma\langle \nabla f(\overline{X}_{t}), \gamma \overline{\bm{g}}(X_t; \Xi_t) \rangle + \mathbb{E}_{t,P}\frac{L}{2}\left\|\overline{\bm{x}}_t\right\|^2\\
+\xlongequal{\text{Lemma \ref{L:deltax}}} & f(\overline{X}_{t}) - \gamma\langle \nabla f(\overline{X}_{t}), \gamma \overline{\bm{g}}(X_t; \Xi_t) \rangle + \frac{\alpha_3 L}{2n}\sum_{j=1}^n \Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right)\\
+& +  \sum_{j=1}^n\frac{\gamma^2L}{2} \mathbb E_{t,G}\left\| \overline{\bm{g}}^{(j)}(X_t;\Xi_t) \right\|^2.
+\end{align*}
+So
+\begin{align*}
+\mathbb{E}_{t}f(\overline{X}_{t+1}) \leq & f(\overline{X}_{t}) -\gamma \langle \nabla f(\overline{X}_{t}), \overline{\nabla} f(X_t) \rangle + \frac{\alpha_3 L}{2n}\sum_{j=1}^n \mathbb E_{t,G}\Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right)\\
+& +  \frac{\gamma^2L}{2} \sum_{j=1}^n\mathbb E_{t,G}\left\| \overline{\bm{g}}^{(j)}(X_t;\Xi_t) \right\|^2.\numberthis\label{main:1_1}
+\end{align*}
+
+Since
+\begin{align*}
+\mathbb E_{t,G}\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2 =& \mathbb E_{t,G}\left\|\left( \overline{\bm{g}}^{(j)}(X_t;\Xi_t)- \overline{\nabla}^{(j)}f(X_t)\right) + \overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+= & \mathbb E_{t,G}\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t)- \overline{\nabla}^{(j)}f(X_t)\right\|^2+ \mathbb E \left\|\overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+& + 2E_{t,G}\left\langle \overline{\bm{g}}^{(j)}(X_t;\Xi_t)- \overline{\nabla}^{(j)}f(X_t), \overline{\nabla}^{(j)}f(X_t) \right\rangle\\
+= & \mathbb E_{t,G}\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t)- \overline{\nabla}^{(j)}f(X_t)\right\|^2+ \left\|\overline{\nabla}^{(j)}f(X_t) \right\|^2,
+\end{align*}
+and
+\begin{align*}
+&\sum_{j=1}^n\mathbb E_{t,G}\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t) - \overline{\nabla}^{(j)}f(X_t)\right\|^2\\
+ = & \frac{1}{n^2}\sum_{j=1}^n\mathbb E_{t,G}\left\| \sum_{i=1}^n \left(\bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \nabla^{(j)} f_i(\bm{x}_t^{(i)})\right)\right\|^2\\
+= & \frac{1}{n^2}\sum_{j=1}^n\sum_{i=1}^n \mathbb E_{t,G}\left\| \bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2\\
+& + \frac{1}{n^2}\sum_{j=1}^n\mathbb E_{t,G}\sum_{i\not=i'}\left\langle \bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \nabla^{(j)} f_i(\bm{x}_t^{(i)}), \bm{g}^{(i',j)}(\bm{x}_t^{(i')};\bm{\xi}_t^{(i')}) - \nabla^{(j)} f_{i'}(\bm{x}_t^{(i')}) \right\rangle\\
+=&\frac{1}{n^2}\sum_{j=1}^n\sum_{i=1}^n \mathbb E_{t,G}\left\| \bm{g}^{(i,j)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \nabla^{(j)} f_i(\bm{x}_t^{(i)})\right\|^2\\
+=&\frac{1}{n^2}\sum_{i=1}^n \mathbb E_{t,G}\left\| \bm{g}^{(i)}(\bm{x}_t^{(i)};\bm{\xi}_t^{(i)}) - \nabla f_i(\bm{x}_t^{(i)})\right\|^2\\
+\leq & \frac{1}{n^2}\sum\limits_{i=1}^n \sigma^2\\
+= & \frac{\sigma^2}{n}
+\end{align*}
+then we have 
+\begin{align*}
+\mathbb E_{t,G}\sum_{j=1}^n\left\|\overline{\bm{g}}^{(j)}(X_t;\Xi_t)\right\|^2 \leq & \frac{\sigma^2}{n} + \sum_{j=1}^n \left\|\overline{\nabla}^{(j)}f(X_t) \right\|^2 \numberthis\label{main:1_2}
+\end{align*}
+Combining \eqref{main:1_1} and \eqref{main:1_2}, we have
+\begin{align*}
+\mathbb{E}_{t}f(\overline{X}_{t+1})\leq & f(\overline{X}_{t}) - \gamma\langle \nabla f(\overline{X}_{t}), \overline{\nabla} f(X_t) \rangle + \frac{\alpha_3 L}{2n}\sum_{j=1}^n \mathbb E_{t,G}\Tr\left( V_t^{(j)}\left(I_n-A_n\right)\left(V_t^{(j)}\right)^{\top} \right)\\
+& +  \frac{\gamma^2L\sigma^2}{2n} + \frac{\gamma^2L}{2}\sum_{j=1}^n \left\|\overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+\leq &f(\overline{X}_{t}) - \gamma\langle \nabla f(\overline{X}_{t}), \overline{\nabla} f(X_t) \rangle  +  \frac{\gamma^2L\sigma^2}{2n} + \frac{\gamma^2L}{2}\sum_{j=1}^n \left\|\overline{\nabla}^{(j)}f(X_t) \right\|^2\\
+& + \frac{\alpha_3 L(2+ 12L^2\gamma^2)}{2n}\sum_{i=1}^n\sum_{j=1}^n\left\|\left(\bm{x}_t^{(i,j)} - \overline{\bm{x}}_t^{(j)}\right)\right\|^2 + 2\alpha_3 L^2\gamma^2\sigma^2 + 6\alpha_3 L\zeta^2\gamma^2\quad \text{(due to Lemma~\ref{L:key} )}\\
+= & f(\overline{X}_{t}) - \gamma\langle \nabla f(\overline{X}_{t}), \overline{\nabla} f(X_t) \rangle  +  \frac{\gamma^2L\sigma^2}{2n} + \frac{\gamma^2L}{2}\left\|\overline{\nabla}f(X_t) \right\|^2\\
+& + \frac{\alpha_3 L(2+ 12L^2\gamma^2)}{2n}\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 + 2\alpha_3 L\sigma^2\gamma^2 + 6\alpha_3 L\zeta^2\gamma^2\\
+= & f(\overline{X}_{t}) -  \frac{\gamma}{2}\left\|\nabla f(\overline{X}_{t})\right\|^2 -\frac{\gamma}{2}\left\|\overline{\nabla} f(X_t)\right\|^2 + \frac{\gamma}{2}\left\|\nabla f(\overline{X}_{t})-\overline{\nabla} f(X_t)\right\|^2 +  \frac{\gamma^2L\sigma^2}{2n}\\
+& + \frac{\gamma^2L}{2}\left\|\overline{\nabla}f(X_t) \right\|^2 + \frac{\alpha_3 L(2+ 12L^2\gamma^2)}{2n}\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 + 2\alpha_3 L\sigma^2\gamma^2 + 6\alpha_3 L\zeta^2\gamma^2. \numberthis \label{main:2_1}
+\end{align*}
+Since 
+\begin{align*}
+\left\|\nabla f(\overline{X}_{t})-\overline{\nabla} f(X_t)\right\|^2 =& \frac{1}{n^2}{\left\|
+	\sum_{i=1}^n\left(\nabla f_i(\overline{X}_t)  -  \nabla f_i(\bm{x}_t^{(i)})\right)\right\|^2}\\
+\leq & \frac{1}{n}\sum_{i=1}^n\left\|\nabla f_i(\overline{X}_t)  -  \nabla f_i(\bm{x}_t^{(i)})\right\|^2\\
+\leq & \frac{L^2}{n}\sum_{i=1}^n\left\|\overline{X}_t-\bm{x}_t^{(i)}\right\|^2.
+\end{align*}
+So \eqref{main:2_1} becomes
+\begin{align*}
+\mathbb{E}_{t}f(\overline{X}_{t+1})
+\leq & f(\overline{X}_{t}) -  \frac{\gamma}{2}\left\|\nabla f(\overline{X}_{t})\right\|^2 -\frac{\gamma}{2}\left\|\overline{\nabla} f(X_t)\right\|^2 +  \frac{\gamma^2L\sigma^2}{2n}\\
+& + \frac{\gamma^2L}{2}\left\|\overline{\nabla}f(X_t) \right\|^2 + \frac{\alpha_3 L(2+ 12L^2\gamma^2) + L^2\gamma}{2n}\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 + 2\alpha_3 L\sigma^2\gamma^2 + 6\alpha_3 L\zeta^2\gamma^2\\
+= & f(\overline{X}_{t}) -  \frac{\gamma}{2}\left\|\nabla f(\overline{X}_{t})\right\|^2 -\frac{\gamma(1-L\gamma)}{2}\left\|\overline{\nabla} f(X_t)\right\|^2 +  \frac{\gamma^2L\sigma^2}{2n} + 2\alpha_3 L\sigma^2\gamma^2 + 6\alpha_3 L\zeta^2\gamma^2\\
+&  + \frac{\alpha_3 L(2+ 12L^2\gamma^2) + L^2\gamma}{2n}\sum_{i=1}^n\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 .
+\end{align*}
+Taking the expectation over the whole history, the inequality above becomes
+\begin{align*}
+\mathbb{E}f(\overline{X}_{t+1})
+\leq & \mathbb{E}f(\overline{X}_{t}) -  \frac{\gamma}{2}\mathbb{E}\left\|\nabla f(\overline{X}_{t})\right\|^2 -\frac{\gamma(1-L\gamma)}{2}\mathbb{E}\left\|\overline{\nabla} f(X_t)\right\|^2 +  \frac{\gamma^2L\sigma^2}{2n} + 2\alpha_3 L\sigma^2\gamma^2 + 6\alpha_3 L\zeta^2\gamma^2\\
+&  + \frac{\alpha_3 L(2+ 12L^2\gamma^2) + L^2\gamma}{2n}\sum_{i=1}^n\mathbb{E}\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2 ,\\
+\end{align*}
+which implies
+\begin{align*}
+\frac{\gamma}{2}\mathbb{E}\left\|\nabla f(\overline{X}_{t})\right\|^2 + \frac{\gamma(1-L\gamma)}{2}\mathbb{E}\left\|\overline{\nabla} f(X_t)\right\|^2
+\leq & \mathbb{E}f(\overline{X}_{t}) - \mathbb{E}f(\overline{X}_{t+1}) + \frac{\gamma^2L\sigma^2}{2n} + 2\alpha_3 L\sigma^2\gamma^2 + 6\alpha_3 L\zeta^2\gamma^2\\
+& + \frac{\alpha_3 L(2+ 12L^2\gamma^2) + L^2\gamma}{2n}\sum_{i=1}^n\mathbb{E}\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2.\numberthis\label{main:2_2}
+\end{align*}
+Summing up both sides of \eqref{main:2_2}, it becomes
+\begin{align*}
+&\sum_{t=1}^T\left( \mathbb{E}\left\|\nabla f(\overline{X}_{t})\right\|^2 + (1-L\gamma)\mathbb{E}\left\|\overline{\nabla} f(X_t)\right\|^2 \right)\\
+\leq & \frac{2(f(\overline{\bm{x}}_0) - \mathbb Ef(\overline{\bm{x}}_{T+1}))}{\gamma}  + \frac{\gamma L\sigma^2 T}{n} + 4\alpha_3 L\sigma^2\gamma T + 12\alpha_3 L\zeta^2\gamma T\\
+& + \frac{\alpha_3 L(2+ 12L^2\gamma^2) + L^2\gamma}{2n\gamma}\sum_{t=1}^T\sum_{i=1}^n\mathbb{E}\left\|\left(\bm{x}_t^{(i)} - \overline{\bm{x}}_t\right)\right\|^2.\numberthis\label{main:2_3}
+\end{align*}
+According to Lemma~\ref{L:xavekey}, we have
+\begin{align*}
+\sum_{t=1}^T\sum_{i=1}^n\mathbb E\left\|\bm{x}_{t}^{(i)} - \overline{\bm{x}}_{t}\right\|^2 \leq & \frac{2\gamma^2n\sigma^2TC_1}{(1-\sqrt{\beta})^2} + \frac{6n\zeta^2TC_1}{(1-\sqrt{\beta})^2},
+\end{align*}
+where $C_1=\left(1- \frac{6L^2\gamma^2}{(1-\sqrt{\beta})^2} \right)^{-1}$. Combing the inequality above with \eqref{main:2_3} we get
+\begin{align*}
+&\frac{1}{T}\sum_{t=1}^T\left( \mathbb{E}\left\|\nabla f(\overline{X}_{t})\right\|^2 + (1-L\gamma)\mathbb{E}\left\|\overline{\nabla} f(X_t)\right\|^2 \right)\\
+\leq & \frac{2f(\bm{0}) -2f(\bm{x}^*)}{\gamma T}  + \frac{\gamma L\sigma^2 }{n} + 4\alpha_3 L\gamma(\sigma^2 + 3\zeta^2)\\
+& + \frac{\left(\alpha_3 L\gamma(2+ 12L^2\gamma^2) + L^2\gamma^2\right)\sigma^2 C_1}{(1-\sqrt{\beta})^2} + \frac{3\left(\alpha_3 L\gamma(2+ 12L^2\gamma^2) + L^2\gamma^2\right)\zeta^2 C_1}{(1-\sqrt{\beta})^2}.
+\end{align*}
+\end{proof}
+
+
+\section{Proof to Corollary~\ref{coro1}}
+\begin{proof} [\textbf{Proof to Corollary~\ref{coro1}}]
+Setting 
+\begin{align*}
+\gamma = \frac{1-\sqrt{\beta}}{6L + 3(\sigma+\zeta)\sqrt{\alpha_3 T} + \frac{\sigma\sqrt{T}}{\sqrt{n}}},
+\end{align*}
+then we have
+\begin{align*}
+1-L\gamma \geq & 0\\
+C_1 \leq & 2\\
+2 + 12 L^2\gamma^2 \leq & 4
+\end{align*}
+So \eqref{theo1eq} becomes
+\begin{align*}
+\frac{1}{T}\sum_{t=1}^T\mathbb{E}\left\|\nabla f(\overline{X}_{t})\right\|^2 
+\leq & \frac{(2f(\bm{0}) -2f(\bm{x}^*) + L)\sigma}{\sqrt{nT}(1-\sqrt{\beta})} + \frac{(2f(\bm{0}) -2f(\bm{x}^*) + L)(\sigma+\zeta)}{1-\sqrt{\beta}}\sqrt{\frac{\alpha_3}{T}}\\
+& + \frac{(2f(\bm{0}) -2f(\bm{x}^*))L}{T} + \frac{L^2(\sigma^2 + \zeta^2)}{(\frac{T}{n} + \alpha_3 T )\sigma^2 + \alpha_3 T \zeta^2},\\
+\frac{1}{T}\sum_{t=1}^T\mathbb{E}\left\|\nabla f(\overline{X}_{t})\right\|^2 
+\lesssim & \frac{\sigma + \zeta}{(1-\sqrt{\beta})\sqrt{nT}} + \frac{\sigma + \zeta}{(1-\sqrt{\beta})}\sqrt{\frac{\alpha_3}{T}}
+ + \frac{1}{T} + \frac{n(\sigma^2 + \zeta^2)}{(1 + n\alpha_3  )\sigma^2 T + n\alpha_3 T \zeta^2}.
+\end{align*}
+
+\end{proof}
+
+\section{Properties of Weighted Matrix $W_t^{(j)}$}\label{secD}
+In this section, we will give three properties of $W_t^{(j)}$, described by Lemma \ref{lem: EW}, Lemma \ref{lem: EWW} and Lemma \ref{lem: EWAW}.
+
+Throughout this section, we will frequently use the following two fact:
+\paragraph{Fact 1:} $\frac{1}{m+1}\binom{n}{m} = \frac{1}{n+1}\binom{n+1}{m+1}$.
+\paragraph{Fact 2:} $\frac{1}{(m+1)(m+2)}\binom{n}{m} = \frac{1}{(n+1)(n+2)}\binom{n+2}{m+2}$.
+\begin{lemma} \label{lem: EW}
+	Under the updating rule (\ref{eq: updatingrule}), there exists $\alpha_1\in [0,1], s.t.,  \forall j\in [n], \forall$ time $t$,
+	\begin{align*}
+		\mathbb{E}_{t,P} \big[W_t^{(j)}\big] = \alpha_1 I_n + (1-\alpha_1)A_n.
+	\end{align*}
+\begin{proof}
+	Because of symmetry, we will fix $j$, say, $j=1$. So for simplicity, we omit superscript ${(j)}$ for all quantities in this proof, the subscript $t$ for $W$, and the subscript $t,P$ for $\mathbb{E}$, because they do not affect the proof.
+	
+	First we proof: $\exists \alpha_1, s.t. $
+	\begin{equation} \label{eq: EW}
+		\mathbb{E} [W]= \alpha_1 I_n + (1-\alpha_1)A_n.
+	\end{equation}
+	
+	Let us understand the meaning of the element of $W$. For the $(k,l)$th element $W_{kl}$. From $X_{t+1} = V_tW$, we know that, $W_{kl}$ represents the portion that $\bm{v}_t^{(l)}$ will be in $\bm{x}_{t+1}^{(k)}$ (the block number ${j}$ has been omitted, as stated before). For $\bm{v}_t^{(l)}$ going into $\bm{x}_{t+1}^{(k)}$, it should first sent from $k$, received by node $b_t$ (also omit ${j}$), averaged with other $j$th blocks by node $b_t$, and at last sent from $b_t$ to $l$. For all pairs $(k,l)$ satisfied $k\not= l$, the expectations of $W_{kl}$ are equivalent because of the symmetry (the same packet drop rate, and independency). For the same reason, the expectations of $W_{kl}$ are also equivalent for all pairs $(k,l)$ satisfied $k=l$. But for two situations that $k=l$ and $k\not=l$, the expectation need not to be equivalent. This is because when the sending end $l$ is also the receiving end $k$, node $l$ (or $k$) will always keep its own portion $\bm{v}_t^{(l)}$ if $l$ is also the node dealing with block $j$, which makes a slight different.
+	
+%	Now, let us figure out what $\alpha_1$ is. We only need to figure out $\mathbb{E}W_{1,1}$. That is, the expected portion for $\bm{v}_t^{(1)}$ going into $\bm{x}_{t+1}^{(1)}$. Notice that we assume that $j=1$.
+%	
+%	\paragraph{Case 1: node 1 deal with the first block}
+%	We denote this event by $A$. In this case, $\bm{v}_t^{(1)}$ is received by node 1 for sure, and the averaged block ($\bm{x}_{t+1}^{(1)}$) received again by node 1 for sure. The randomness is the portion. 
+%	
+%	If except for $\bm{v}_t^{(1)}$ there are $m$ blocks received by node 1 $(0\le m\le n-1)$, then the portion is $1/(m+1)$ because there are totally $m+1$ blocks received by node 1. The probability for this event is $\binom{n-1}{m}(1-p)^mp^{n-1-m}$. Therefore, we have:
+%	\begin{align*}
+%		\mathbb{E} [W_{1,1}\mid A] &= \sum\limits_{m=0}^{n-1} \frac{1}{m+1}\binom{n-1}{m}(1-p)^mp^{n-1-m}\\
+%		 &\xlongequal{\text{Fact 1}} \sum\limits_{m=0}^{n-1} \frac{1}{n+1}\binom{n}{m+1}(1-p)^mp^{n-1-m}\\
+%		 &=\frac{1}{n+1}\sum\limits_{m=1}^{n} \binom{n}{m}(1-p)^{m-1}p^{n-m}\\
+%		 &=\frac{1}{(n+1)(1-p)}\sum\limits_{m=1}^{n}\binom{n}{m}(1-p)^mp^{n-m}\\
+%		 &=\frac{1-p^n}{(n+1)(1-p)}
+%	\end{align*}
+%	
+%	\paragraph{Case 2: node 1 does not deal with the first block}
+%	As defined in \textbf{Case 1}, we can denote this event by $\bar{A}$. 
+%	
+%	There are also two situations, one is node 1 at last receive $x_{t+1}^1$, or $x_{t+1}^1$ is dropped. We denote the event " $x_{t+1}^1$ is dropped" by $B$. When $B$ happens, then node 1 use its original intermediate model $v_t^1$, which means $W_{1,1} = 1$. 
+%	
+%	Now, we only consider $B$ is not happen. We only consider the situation that $\bm{v}_t^{1}$ is chosen, otherwise the portion of $\bm{v}_t^{1}$ is 0. If there are $m+1, (0\le m\le n-2)$ are chosen and $\bm{v}_t^{1}$ is included, then the portion of $\bm{v}_t^{1}$ is $1/(m+2)$. The probability of this event is $\binom{n-2}{m}(1-p)^{(m+1)}p^{(n-m-2)}$. Therefore, we have:
+%	\begin{align*}
+%		\mathbb{E} [W_{1,1}\mid \bar{A}, \bar{B}] &= \sum\limits_{m=0}^{n-2} \frac{1}{m+2}\binom{n-2}{m}(1-p)^{m+1}p^{n-m-2}\\
+%		&\le \sum\limits_{m=0}^{n-2}\frac{1}{m+1}\binom{n-2}{m}(1-p)^{m+1}p^{n-m-2}\\
+%		&\xlongequal{\text{Fact 1}} \sum\limits_{m=0}^{n-2} \frac{1}{n-1}\binom{n-1}{m+1}(1-p)^{m+1}p^{n-m-2}\\
+%		&=\frac{1}{n-1}\sum\limits_{m=1}^{n-1}\binom{n-1}{m}(1-p)^mp^{n-1-m}\\
+%		&=\frac{1-p^{n-1}}{n-1}
+%	\end{align*}
+%	
+%	Combining \textbf{Case 1}, \textbf{Case 2}, and $P(A) = 1/n$, $P(\bar{A},B) = (n-1)p/n$, $P(\bar{A}, \bar{B}) = (n-1)(1-p)/n$, we can obtain the following: 
+%	\begin{align*}
+%		\mathbb{E} [W_{1,1}] &= \mathbb{E} [W_{1,1}\mid A]P(A) + \mathbb{E} [W_{1,1}\mid \bar{A},\bar{B}]P(\bar{A},\bar{B}) + 1\cdot P(\bar{A},B)\\
+%		&\le \frac{1-p^n}{(n+1)(1-p)}\cdot \frac{1}{n} + \frac{1-p^{n-1}}{n-1}\cdot \frac{(n-1)(1-p)}{n} + \frac{(n-1)p}{n}\\
+%		&=\frac{1}{n}\Big[\frac{1-p^n}{(n+1)(1-p)} + \big(1-p^{n-1}\big)(1-p) + (n-1)p\Big]
+%	\end{align*}
+%	
+%	Also, from (\ref{eq: EW}), we have: $\mathbb{E} [W_{1,1}] = \alpha_1 + (1-\alpha_1)/n$. Therefore,
+%	\begin{align*}
+%		\alpha_1 = \frac{n\mathbb{E} [W_{1,1}]-1}{n-1}...................
+%	\end{align*}
+%	
+%	
+
+	
+	
+	
+\end{proof}
+\end{lemma}
+
+\begin{lemma} \label{lem: EWW}
+	Under the updating rule (\ref{eq: updatingrule}), there exists $\alpha_2\in [0,1], s.t.,  \forall j\in [n], \forall$ time $t$, 
+	\begin{align*}
+		\mathbb{E}_{t,P} \Big[W_t^{(j)}{W_t^{(j)}}^{\top}\Big] = \alpha_2 I_n + (1-\alpha_2)A_n.
+	\end{align*}
+	Moreover, $\alpha_2$ satisfies:
+	\begin{equation*}
+	 	\alpha_2 \le p + \frac{(1-p)^n}{n} + T_1 + T_2,
+	\end{equation*}
+	where
+	\begin{align*}
+		T_1 &= \frac{2\big(1-p^{n+1}-(n+1)(1-p)p^n - (n+1)n(1-p)^2p^{n-1}/2 - (1-p)^{n+1}\big)}{n(n+1)(1-p)^2},\\
+		T_2 &=\frac{1-p^n-n(1-p)p^{n-1}-(1-p)^n}{(n-1)(1-p)}.
+	\end{align*}
+\begin{proof}
+Similar to Lemma (\ref{lem: EW}), we fix $j=1$, and omit superscript $(j)$ for all quantities in this proof, the subscript $t$ for W and the subscript $t,P$ for $\mathbb{E}$.
+
+Also similar to Lemma (\ref{lem: EW}), there exists $\alpha, s.t.$
+\begin{equation} \label{eq: EWW}
+	\mathbb{E} \big[WW^{\top}\big] = \alpha_2I_n + (1-\alpha_2)A_n
+\end{equation}
+
+The only thing left is to bound $\alpha_2$. From (\ref{eq: EWW}), we know that $\alpha_2 = \frac{n\mathbb{E}[WW^{\top}]_{(1,1)}-1}{n-1}$. After simple compute, we have $\mathbb{E}[WW^{\top}]_{(1,1)} = \mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\Big]$. So we have the following:
+\begin{align*}
+	\alpha_2 = \frac{n\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\Big]-1}{n-1}.
+\end{align*}
+ Therefore, bounding $\alpha_2$ equals bounding $\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\Big]$. Similar to Lemma (\ref{lem: EW}), we denote the event "node 1 deal with the first block" by $A$.
+
+ \paragraph{Case 1: node 1 deal with the first block}  In this case, let's understand $W$ again. node 1 average the 1st blocks it has received, then broadcast to all nodes. Therefore, for every node $i$ who received this averaged block, $\bm{x}_{t+1}^{(i)}$ has the same value, in other words, the column $i$ of $W$ equals, or, $W_{1,i}$ equals to $W_{1,1}$.  On the other hand, for every node $i$ who did not receive this averaged block, they keep their origin model $v_t^{(i)}$. But $i\not=1$ (because node 1 deal with this block, itself must receive its own block), which means $W_{1,i} = 0$.
+ 
+ Therefore, for $i\not=1, i\in [n]$, if node $i$ receive the averaged model, $W_{1,i} = W_{1,1}$. Otherwise, $W_{1,i} = 0$. Based on this fact, we can define the random variable $B_i$ for $i\not=1, i\in [n]$. $B_i = 1$ if node $i$ receive the averaged block., $B_i=0$ if node $i$ does not receive the averaged block. Immediately, we can obtain the following equation:
+ \begin{equation} \label{eq: 21}
+ 	\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid A\Big] = \mathbb{E}\Big[W_{1,1}^2\cdot\Big(\sum\limits_{i=2}^n B_i+1\Big)\mid A\Big] = \mathbb{E}[W_{1,1}^2 \mid A]\cdot\big(1+(n-1)\mathbb{E}[B_n\mid A]\big).
+\end{equation}
+The last equation results from that $A,B_2,\cdots, B_n$ are independent and $B_2, \cdots, B_n$ are from identical distribution.
+
+First let's compute $\mathbb{E}[W_{1,1}^2 \mid A]$. If node $i$ received the 1st block from $m (0\le m \le n-1)$ nodes (except itself), then $W_{1,1} = 1/(m+1)$. The probability of this event is $\binom{n-1}{m}(1-p)^mp^{n-1-m}$. So we can obtain:
+\begin{align*}
+	\mathbb{E}[W_{1,1}^2 \mid A] &= \sum\limits_{m=0}^{n-1}\frac{1}{(m+1)^2}\binom{n-1}{m}(1-p)^mp^{n-1-m}\\
+	&= \frac{1}{n^2}(1-p)^{n-1} + p^{n-1}+ \sum\limits_{m=1}^{n-2}\frac{1}{(m+1)^2}\binom{n-1}{m}(1-p)^mp^{n-1-m}\\
+	&\le \frac{1}{n^2}(1-p)^{n-1} + p^{n-1}+\sum\limits_{m=1}^{n-2}\frac{2}{(m+1)(m+2)}\binom{n-1}{m}(1-p)^mp^{n-1-m}\\
+	&\xlongequal{\text{Fact 2}}\frac{1}{n^2}(1-p)^{n-1}  + p^{n-1}+\sum\limits_{m=1}^{n-2}\frac{2}{n(n+1)}\binom{n+1}{m+2}(1-p)^mp^{n-1-m}\\
+	&=\frac{1}{n^2}(1-p)^{n-1} + p^{n-1}+\frac{2}{n(n+1)}\sum\limits_{m=3}^{n}\binom{n+1}{m}(1-p)^{m-2}p^{n+1-m}\\
+	&=\frac{1}{n^2}(1-p)^{n-1} + p^{n-1}
+	  +\frac{2}{n(n+1)(1-p)^2}\sum\limits_{m=3}^{n}\binom{n+1}{m}(1-p)^{m}p^{n+1-m}\\
+	&=\frac{1}{n^2}(1-p)^{n-1} +p^{n-1}\\
+	& \quad + \frac{2\big(1-p^{n+1}-(n+1)(1-p)p^n - (n+1)n(1-p)^2p^{n-1}/2 - (1-p)^{n+1}\big)}{n(n+1)(1-p)^2}\\
+	&\le \frac{1}{n^2}(1-p)^{n-1} + p^{n-1} +T_1,
+\end{align*}
+where we denote $T_1 := \frac{2\big(1-p^{n+1}-(n+1)(1-p)p^n - (n+1)n(1-p)^2p^{n-1}/2 - (1-p)^{n+1}\big)}{n(n+1)(1-p)^2}$.
+
+Next let's compute $\mathbb{E}[B_n\mid A]$. $B_n$ is just a $0-1$ distribution, with success probability $1-p$. Therefore, $\mathbb{E}[B_n\mid A] = 1-p$.
+
+Applying all these equations into (\ref{eq: 21}), we can get:
+\begin{align*}
+	\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid A\Big] \leq & \left(\frac{1}{n^2}(1-p)^{n-1} + p^{n-1} + T_1\right)(1+(n-1)(1-p))\\
+	\leq&\frac{(1-p)^{n-1}}{n} + p^{n-1} + nT_1\numberthis\label{case1_1}
+\end{align*}
+
+\paragraph{Case 2: node 1 does not deal with the first block and node 1 does not receive averaged block} We define a new event $C$, representing that node 1 does not receive the averaged block. So, \textbf{Case 2} equals the event $\bar{A}\cap C$. In this case, node 1 keeps its origin block $\bm{v}_t^{(1)}$, which means $W_{1,1} = 1$. 
+
+Again due to symmetry, we can suppose that node $n$ deal with the first block. Then we can use the method in \textbf{Case 1}. But in this case, we only use $B_2, \cdots, B_{n-1}$, because node $n$ must receive its own block and node 1 does not receive averaged block, and we use $W_{1,n}$ instead of $W_{1,1}$. Then, we obtain:
+\begin{align} \label{eq: EWW2}
+	\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid \bar{A}, C\Big] &= 1 + \mathbb{E}\Big[W_{1,n}^2\cdot\Big(\sum\limits_{i=2}^{n-1} B_i+1\Big)\mid \bar{A},C\Big]\\
+	& = 1 + \mathbb{E}[W_{1,n}^2 \mid \bar{A},C]\cdot\big(1+(n-2)\mathbb{E}[B_{n-1}\mid \bar{A},C]\big).
+\end{align}
+Here, we similarly have $\mathbb{E}[B_{n-1}\mid \bar{A},C] = 1-p$, but we need to compute $\mathbb{E} [W_{1,n}^2\mid \bar{A},C]$. When the 1st block from node 1 is not received by node $n$, $W_{1,n} = 0$. If node 1's block is received, together with other $m, (0\le m\le n-2)$ nodes' blocks, then $W_{1,n} = 1/(m+2)$ (node $n$'s block is always received by itself). The probability of this event is $\binom{n-2}{m}(1-p)^{m+1}p^{n-2-m}$. Therefore,
+\begin{align*}
+	\mathbb{E}[W_{1,n}^2 \mid \bar{A},C] &= \sum\limits_{m=0}^{n-2}\frac{1}{(m+2)^2}\binom{n-2}{m}(1-p)^{m+1}p^{n-2-m}\\
+	&=\frac{1}{n^2}(1-p)^{n-1} + \sum\limits_{m=0}^{n-3}\frac{1}{(m+2)^2}\binom{n-2}{m}(1-p)^{m+1}p^{n-2-m}\\
+	&\le \frac{1}{n^2}(1-p)^{n-1} + \sum\limits_{m=0}^{n-3}\frac{1}{(m+2)(m+1)}\binom{n-2}{m}(1-p)^{m+1}p^{n-2-m}\\
+	&\xlongequal{\text{Fact 2}}\frac{1}{n^2}(1-p)^{n-1} + \sum\limits_{m=0}^{n-3}\frac{1}{n(n-1)}\binom{n}{m+2}(1-p)^{m+1}p^{n-2-m}\\
+	&=\frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n(n-1)}\sum\limits_{m=2}^{n-1} \binom{n}{m}(1-p)^{m-1}p^{n-m}\\
+	&=\frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n(n-1)(1-p)}\sum\limits_{m=2}^{n-1} \binom{n}{m}(1-p)^{m}p^{n-m}\\
+	&=\frac{1}{n^2}(1-p)^{n-1} + \frac{1-p^n-n(1-p)p^{n-1}-(1-p)^n}{n(n-1)(1-p)}\\
+	&\le \frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n}T_2,
+\end{align*}
+where $T_2:=\frac{1-p^n-n(1-p)p^{n-1}-(1-p)^n}{(n-1)(1-p)}$.
+
+Applying these equations into (\ref{eq: EWW2}), we get:
+\begin{align*}
+	\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid \bar{A}, C\Big] \leq & 1 + \left(\frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n}T_2\right)\cdot(1+(n-2)(1-p))\\
+	\leq & 1 + \frac{(1-p)^{n-1}}{n} +  T_2\numberthis\label{case2_1}
+\end{align*}
+
+\paragraph{Case 3: node 1 does not deal with the first block and node 1 receives averaged block} This is the event $\bar{C}\cap \bar{A}$. Similar to the analysis above, we have:
+\begin{align*}
+	\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid \bar{A}, \bar{C}\Big] &= \mathbb{E}\Big[W_{1,1}^2\cdot\Big(\sum\limits_{i=2}^{n-1} B_i+2\Big)\mid \bar{A},\bar{C}\Big]\\
+	&=\mathbb{E}\Big[W_{1,1}^2\mid \bar{A},\bar{C}\Big]\cdot (2+(n-2)\mathbb{E} [B_2 \mid \bar{A},\bar{C}])
+\end{align*}
+
+Similarly, we have $\mathbb{E} [B_2\mid \bar{A}, \bar{C}] = 1-p$. For $\mathbb{E}\Big[W_{1,1}^2\mid \bar{A},\bar{C}\Big]$, the argument is the same as $\mathbb{E} [W_{1,n}^2\mid \bar{A},C]$ in \textbf{Case 2}. So, we have:
+\begin{align*}
+	\mathbb{E}\Big[W_{1,1}^2\mid \bar{A},\bar{C}\Big] \le \frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n}T_2.
+\end{align*}
+
+Applying these together, we can obtain:
+\begin{align*}
+	\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid \bar{A}, \bar{C}\Big] \leq & \left(\frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n}T_2\right)\cdot(2+(n-2)(1-p))\\
+	\leq & \frac{(1-p)^{n-1}}{n} + T_2\numberthis\label{case3_1}
+\end{align*}
+
+Combined with three cases, $P(A) = 1/n$, $P(\bar{A},C) = p(n-1)/n$, and $P(\bar{A}, \bar{C}) = (1-p)(n-1)/n$, we have 
+\begin{align*}
+	\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\Big] \leq& \frac{1}{n}\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid A\Big] + \frac{p(n-1)}{n} \mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid \bar{A}, C\Big] 
+	 + \frac{(1-p)(n-1)}{n}\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\mid \bar{A}, \bar{C}\Big].	
+\end{align*}
+Combing the inequality above and \eqref{case1_1} \eqref{case2_1} \eqref{case3_1} together, we get
+\begin{align*}
+\mathbb{E} \Big[\sum\limits_{i=1}^n W_{1,i}^2\Big] \leq& \frac{(1-p)^n}{n^2} + \frac{p^n}{n} + T_1  + \frac{p(n-1)}{n} + \frac{p(1-p)^{n-1}}{n} + T_2p + \frac{(1-p)^n(n-1)}{n^2} + T_2(1-p) \\
+\leq & p + \frac{(1-p)^n}{n} + T_1 + T_2  \\
+\alpha_2 \leq & \frac{np + (1-p)^n + nT_1 + nT_2 - 1}{n-1}
+\end{align*}
+
+
+
+
+\end{proof}
+\end{lemma}
+
+\begin{lemma} \label{lem: EWAW}
+	Under the updating rule (\ref{eq: updatingrule}), there exists $\alpha_3\in [0,1], s.t.,  \forall j\in [n], \forall$ time $t$,
+	\begin{align*}
+		\mathbb{E}_{t,P} \Big[W_t^{(j)}A_n{W_t^{(j)}}^{\top}\Big] = \alpha_3 I_n + (1-\alpha_3)A_n.
+	\end{align*}
+	Moreover, $\alpha_3$ satisfies: 
+	\begin{equation*}
+		\alpha_3 \le \frac{p(1+2T_3) + (1-p)^{n-1}}{n} + \frac{2p(1-p)^n}{n} + \frac{p^n(1-p)}{n^2} + T_1 + T_2,
+	\end{equation*}
+	where
+	\begin{align*}
+		T_1 &= \frac{2\big(1-p^{n+1}-(n+1)(1-p)p^n - (n+1)n(1-p)^2p^{n-1}/2 - (1-p)^{n+1}\big)}{n(n+1)(1-p)^2},\\
+		T_2 &=\frac{1-p^n-n(1-p)p^{n-1}-(1-p)^n}{(n-1)(1-p)},\\
+		T_3 &= \frac{n}{n-1}\left(1-p^{n-1} - (1-p)^{n-1}\right) + (1-p)^{n-1}.				
+	\end{align*}
+\begin{proof}
+Similar to Lemma (\ref{lem: EW}) and Lemma (\ref{lem: EWW}), we fix $j=1$, and omit superscript $(j)$ for all quantities in this proof, the subscript $t$ for W and the subscript $t,P$ for $\mathbb{E}$. And we still use $A$ to denote the event "node 1 deal with the first block", use the binary random variable $B_i$ to denote whether node $i$ receive the averaged block. The definitions is the same to them in Lemma \ref{lem: EWW}.  
+
+Again similar to Lemma (\ref{lem: EW}), there exists $\alpha_3, s.t.$
+\begin{equation} \label{eq: EWAW}
+	\mathbb{E} \big[WA_nW^{\top}\big] = \alpha_3I_n + (1-\alpha_3)A_n.
+\end{equation}
+The only thing left is to bound $\alpha_3$. From (\ref{eq: EWAW}), we know that $\alpha_3 = \frac{n\mathbb{E}[WA_nW^{\top}]_{(1,1)}-1}{n-1}$. After simple compute, we have $\mathbb{E}[WA_nW^{\top}]_{(1,1)} =  \mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\right]/n$. So we have the following:
+\begin{align*}
+	\alpha_3 = \frac{\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\right]-1}{n-1}.
+\end{align*}
+Therefore, bounding $\alpha_3$ equals bounding $\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\right]$.
+
+\paragraph{Case 1: node 1 deal with the first block} 
+ In this case, $\sum\limits_{i=1}^n W_{1,i} = W_{1,1}\cdot \left(1+\sum\limits_{i=2}^n B_i \right)$, which means, $\left(\sum\limits_{i=1}^n W_{1,i}\right)^2 = W_{1,1}^2\cdot \left(1+\sum\limits_{i=2}^n B_i\right)^2$. Similar to Lemma \ref{lem: EWW}, $A$ and $\left\{B_i\right\}_{i=2}^n$ are independent, so we have:
+ \begin{equation*}
+ 	\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\mid A\right] = \mathbb{E} \left[W_{1,1}^2\mid A\right]\cdot \mathbb{E} \left[ \left(1+\sum\limits_{i=2}^n B_i\right)^2\mid A\right].
+\end{equation*}
+
+From Lemma \ref{lem: EWW}, we have 
+\begin{align*}
+\mathbb{E} \left[W_{1,1}^2\mid A\right] \le \frac{1}{n^2}(1-p)^{n-1} + p^{n-1} +T_1.
+\end{align*}
+For $\mathbb{E} [(1+\sum\limits_{i=2}^n B_i)^2\mid A]$, since $\left\{B_i\right\}_{i=2}^n$ are independent, we have the following:
+\begin{align*}
+	\mathbb{E} \left[ \left(1+\sum\limits_{i=2}^n B_i\right)^2\mid A\right]&=\left(\mathbb{E} \left[1+\sum\limits_{i=2}^n B_i\mid A\right]\right)^2 + \mathrm{Var}\left[1+\sum\limits_{i=2}^n B_i\mid A\right]\\
+	& = \left(1+\left(n-1\right)\left(1-p\right)\right)^2 + (n-1)p(1-p)
+\end{align*}
+
+Combined these together, we obtain:
+\begin{align*}
+	&\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\mid A\right]\\
+	\leq & \left(\frac{1}{n^2}(1-p)^{n-1} + p^{n-1} +T_1\right)\left(\left(1+\left(n-1\right)\left(1-p\right)\right)^2 + (n-1)p(1-p)\right)\\
+	\leq & \frac{(1-p)^{n-1}(1+(n-1)(1-p))^2}{n^2} + p^{n-1}(1+(n-1)(1-p))^2 + \frac{p^n(1-p) + (1-p)^np}{n} + n^2 T_1
+\end{align*}
+
+\paragraph{Case 2: node 1 does not deal with the first block and node 1 does not receive averaged block} In this case, $\sum\limits_{i=1}^n W_{1,i} = 1 + W_{1,n}\cdot\left(\sum\limits_{i=2}^{n-1}B_i + 1\right)$ (suppose node $n$ deal with the first block). So we have:
+\begin{equation*}
+	\left(\sum\limits_{i=1}^n W_{1,i}\right)^2 = 1 + 2W_{1,n}\left(\sum\limits_{i=2}^{n-1}B_i + 1\right) + W_{1,n}^2\left(\sum\limits_{i=2}^{n-1}B_i+1\right)^2,
+\end{equation*}
+which means (notice $W_{1,n}$ and $\{B_i\}_{i=2}^{n-1}$ are independent),
+\begin{equation*}
+	\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\mid \bar{A},C\right] = 1 + 2\mathbb{E}\left[W_{1,n}\mid \bar{A},C\right]\mathbb{E} \left[\sum\limits_{i=2}^{n-1}B_i+1\mid \bar{A},C\right] + \mathbb{E}\left[W_{1,n}^2\mid \bar{A},C\right]\mathbb{E} \left[\left(\sum\limits_{i=2}^{n-1} B_i + 1\right)^2\mid \bar{A},C\right].
+\end{equation*}
+
+First let's consider $\mathbb{E}[W_{1,n}\mid \bar{A},C]$. Similar to the analysis of \textbf{Case 2} in Lemma \ref{lem: EWW} except instead first moment of second moment, we have:
+\begin{align*}
+	\mathbb{E}[W_{1,n}\mid \bar{A},C] &= \sum\limits_{m=0}^{n-2} \frac{1}{m+2}\binom{n-2}{m}(1-p)^{m+1}p^{n-2-m}\\
+	&= \frac{1}{n}(1-p)^{n-1} + \sum\limits_{m=0}^{n-3} \frac{1}{m+2}\binom{n-2}{m}(1-p)^{m+1}p^{n-2-m}\\
+	&\le \frac{1}{n}(1-p)^{n-1} + \sum\limits_{m=0}^{n-3} \frac{1}{m+1}\binom{n-2}{m}(1-p)^{m+1}p^{n-2-m}\\
+	&\xlongequal{\text{Fact 1}}\frac{1}{n}(1-p)^{n-1} + \sum\limits_{m=0}^{n-3} \frac{1}{n-1}\binom{n-1}{m+1}(1-p)^{m+1}p^{n-2-m}\\
+	&=\frac{1}{n}(1-p)^{n-1} + \frac{1}{n-1}\sum\limits_{m=1}^{n-2}\binom{n-1}{m}(1-p)^mp^{n-1-m}\\
+	&=\frac{1}{n}(1-p)^{n-1} + \frac{1}{n-1}\left(1-p^{n-1} - (1-p)^{n-1}\right)\\
+	& = \frac{T_3}{n},
+\end{align*}
+where we denote $T_3:= \frac{n}{n-1}\left(1-p^{n-1} - (1-p)^{n-1}\right) + (1-p)^{n-1}$.
+
+Next, from Lemma \ref{lem: EWW}, we have 
+\begin{align*}
+\mathbb{E}\left[W_{1,n}^2\mid \bar{A},C\right]\le \frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n}T_2.
+\end{align*}
+
+Next we deal with item with $B_i$.
+We have the following:
+\begin{equation*}
+	\mathbb{E} \left[\sum\limits_{i=2}^{n-1}B_i + 1\mid \bar{A},C\right] = (n-2)(1-p) + 1
+\end{equation*}
+\begin{align*}
+	\mathbb{E} \left[\left(\sum\limits_{i=2}^{n-1}B_i+1\right)^2\mid \bar{A},C\right] &= 1 + 2(n-2)\mathbb{E} [B_2 \mid \bar{A},C] + \mathbb{E} \left[\left(\sum\limits_{i=2}^{n-1}B_i\right)^2\mid \bar{A},C\right]\\
+	&=1+2(n-2)(1-p) + \left(\mathbb{E} \left[\sum\limits_{i=2}^{n-1}B_i\mid \bar{A},C\right]\right)^2 + \mathrm{Var}\left[\sum\limits_{i=2}^{n-1}B_i\mid \bar{A},C\right]\\
+	&=1+2(n-2)(1-p) + (n-2)^2(1-p)^2 + (n-2)p(1-p)
+\end{align*}
+Combining those terms together we get
+\begin{align*}
+&\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\mid \bar{A},C\right]\\
+\leq & 
+1 + \frac{(1-p)^{n-1}}{n^2} + \frac{(n-2)(1-p)^n}{n} + \frac{p(1-p)^n}{n} + nT_2  + 2T_3
+\end{align*}
+
+
+\paragraph{Case 3: node 1 does not deal with the first block and node 1 receives averaged block} In this case, $\sum\limits_{i=1}^n W_{1,i} = W_{1,1}\cdot \left(\sum\limits_{i=2}^{n-1}B_i + 2\right)$. So we have: 
+\begin{equation*}
+	\left(\sum\limits_{i=1}^n W_{1,i}\right)^2 = W_{1,1}^2\cdot \left(\sum\limits_{i=2}^{n-1}B_i + 2\right)^2,
+\end{equation*}
+which means (notice that $W_{1,1}$ and $\{B_i\}_{i=2}^{n-1}$ are independent)
+\begin{equation*}
+	\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2 \mid \bar{A}, \bar{C}\right] = \mathbb{E} \left[W_{1,1}^2\mid \bar{A}, \bar{C}\right]\cdot \mathbb{E} \left[\left(\sum\limits_{i=2}^{n-1}B_i + 2\right)^2\mid \bar{A}, \bar{C}\right].
+\end{equation*}
+
+Similar to Lemma \ref{lem: EWW}, $\mathbb{E} \left[W_{1,1}^2\mid \bar{A}, \bar{C}\right]$ is the same as $\mathbb{E}\left[W_{1,n}^2\mid \bar{A},C\right]$.
+\begin{align*}
+\mathbb{E} \left[W_{1,1}^2\mid \bar{A}, \bar{C}\right] = \frac{1}{n^2}(1-p)^{n-1} + \frac{1}{n}T_2
+\end{align*}
+
+
+Also, we have the following:
+\begin{align*}
+	\mathbb{E} \left[\left(\sum\limits_{i=2}^{n-1}B_i + 2\right)^2\mid \bar{A}, \bar{C}\right] &= \left(\mathbb{E} \left[\sum\limits_{i=2}^{n-1}B_i + 2\mid \bar{A}, \bar{C}\right]\right)^2 + \mathrm{Var}\left[\sum\limits_{i=2}^{n-1}B_i+2\mid\bar{A},\bar{C}\right]\\
+	&=[(n-2)(1-p)+2]^2 + (n-2)p(1-p)
+\end{align*}
+
+So we have
+\begin{align*}
+&\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2 \mid \bar{A}, \bar{C}\right]\\
+\leq & \frac{(1-p)^{n-1}((n-2)(1-p) + 2)^2}{n^2} + \frac{p(1-p)^n}{n} + nT_2
+\end{align*}
+
+Combining these inequalities together, we have the following:
+\begin{align*}
+	&\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\right]\\
+	=&\mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\mid A\right]P(A) + \mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2\mid \bar{A},C\right]P(\bar{A},C)\\
+	& + \mathbb{E} \left[\left(\sum\limits_{i=1}^n W_{1,i}\right)^2 \mid \bar{A}, \bar{C}\right]P(\bar{A},\bar{C})\\
+	\leq & \frac{(1-p)^{n-1}(1+(n-1)(1-p))^2}{n^3} + \frac{p^{n-1}(1+(n-1)(1-p))^2}{n} + \frac{2p^n(1-p) + (1-p)^np}{n^2}\\
+	& + n T_1 +   \frac{(n-1)p}{n}\left( 1 + \frac{(1-p)^{n-1}}{n^2} + \frac{(n-2)(1-p)^n}{n} + \frac{p(1-p)^n}{n} + nT_2  + 2T_3 \right) \\
+	& + \frac{(n-1)(1-p)}{n} \left( \frac{(1-p)^{n-1}((n-2)(1-p) + 2)^2}{n^2} + \frac{p(1-p)^n}{n} + nT_2 \right)\\
+	\leq & \frac{(1-p)^{n-1}}{n} + \frac{p^{n-1}(1+(n-1)(1-p))^2}{n} + \frac{p(1-p)^n+p^n(1-p)}{n^2} + nT_1\\
+	& + p + \frac{p(1-p)^n}{n} + nT_2 + 2T_3p + \frac{(n-1)(1-p)^n}{n}\\
+	\leq & p(1+2T_3) + (1-p)^{n-1} + \frac{2p(1-p)^n}{n} + \frac{p^n(1-p)}{n^2} + n(T_1+T_2),
+\end{align*}
+and
+\begin{align*}
+\alpha_3 \leq & \frac{p(1+2T_3) + (1-p)^{n-1}}{n} + \frac{2p(1-p)^n}{n} + \frac{p^n(1-p)}{n^2} + T_1 + T_2.
+\end{align*}
+
+	
+\end{proof}
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
